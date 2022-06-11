@@ -8,7 +8,12 @@ from celery import Celery
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost//')
 app.conf.broker_url = 'redis://localhost:6379/0'
 
-@app.task
+
+@app.task(time_limit=10)
 def add(x, y):
+    import time
+    time.sleep(20)
+    print('正常处理')
+
     return x + y
 

@@ -5,6 +5,7 @@ __pycache__/
 
 # User 
 dump.rdb
+.idea/
 
 # C extensions
 *.so
