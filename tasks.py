@@ -10,19 +10,19 @@ app = Celery('tasks', backend='redis://localhost:6379/0', broker='redis://localh
 
 @app.task(name='foo')
 def foo():
-    # os.system : just run subprocess with a command
-    # os.system("/Users/liyong/Code/Python/Celery/first_steps_with_celery/rater.sh")
+    ## os.system : just run subprocess with a command
+    ## os.system("/Users/liyong/Code/Python/Celery/first_steps_with_celery/rater.sh")
 
-    # ls_process = subprocess.run(
-    #     ["ls", "-l"],
-    #     capture_output=True,
-    #     encoding="utf-8"
-    # )
-    # print(ls_process)
-    # print(ls_process.stdout)
+    ls_process = subprocess.run(
+        ["ls", "-l"],
+        capture_output=True,
+        encoding="utf-8"
+    )
+    print(ls_process)
+    print(ls_process.stdout)
 
     print("foo done")
-    return "foo done"
+    return ls_process.stdout
     
 
 @app.task(name='add_with_hard_timeout', time_limit=10)

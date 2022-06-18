@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from celery.result import AsyncResult
 from celery import Celery, Task
+from time import sleep
 
 import tasks
+
 
 app = Flask(__name__)
 
@@ -25,3 +27,14 @@ if __name__ == "__main__":
     # print(res.get()) # Get task result will block request
     print(f'/foo res.id : {res.id}')
     print(f'/foo res.state : {res.state}')
+
+    sleep(2)
+
+    task_res = AsyncResult(res.id, app=tasks.app)
+    if task_res.state == "SUCCESS":
+        print(task_res.get())
+    else:
+        print(f"task state : {task_res.state}")
+
+
+
