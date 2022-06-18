@@ -2,8 +2,28 @@
 from celery import Celery
 from celery.exceptions import SoftTimeLimitExceeded
 
-app = Celery('tasks', backend='redis://localhost', broker='redis://localhost//')
-app.conf.broker_url = 'redis://localhost:6379/0'
+import os
+import subprocess
+
+app = Celery('tasks', backend='redis://localhost:6379/0', broker='redis://localhost:6379/0')
+#app.conf.broker_url = 'redis://localhost:6379/0'
+
+@app.task(name='foo')
+def foo():
+    # os.system : just run subprocess with a command
+    # os.system("/Users/liyong/Code/Python/Celery/first_steps_with_celery/rater.sh")
+
+    # ls_process = subprocess.run(
+    #     ["ls", "-l"],
+    #     capture_output=True,
+    #     encoding="utf-8"
+    # )
+    # print(ls_process)
+    # print(ls_process.stdout)
+
+    print("foo done")
+    return "foo done"
+    
 
 @app.task(name='add_with_hard_timeout', time_limit=10)
 def add_with_hard_timeout(x, y):
