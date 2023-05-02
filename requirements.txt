@@ -7,7 +7,7 @@ celery~=5.2.3
 redis
 librosa
 pydub
-flask~=2.0.3
+flask~=2.3.2
 ffmpeg-python
 numpy~=1.21.5
 mido~=1.2.10
