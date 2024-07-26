@@ -1,6 +1,6 @@
 piano_transcription_inference
 pymusicxml~=0.5.4
-torch~=1.10.2
+torch>2.2.0
 torchvision
 wget~=3.2
 celery~=5.2.3
